@@ -1,35 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+import SetPin from "./pages/SetPin";
+import CreateWallet from "./pages/CreateWallet";
+import WalletDetails from "./pages/WalletDetails";
+import AddGuardian from "./pages/AddGuardian";
+import GuardianRequests from "./pages/GuardianRequests";
+import AddMoney from "./pages/AddMoney";
+import SendMoney from "./pages/SendMoney";
+import TransactionApprovals from "./pages/TransactionApprovals";
+import Transactions from "./pages/Transactions";
+
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      {/* <h1>Vite + React</h1> */}
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/set-pin" element={<SetPin />} />
+        <Route path="/create-wallet" element={<CreateWallet />} />
+        <Route path="/wallet/:walletId" element={<WalletDetails />} />
+        <Route path="/wallet/:walletId/guardians" element={<AddGuardian />} />
+        <Route path="/guardian/requests" element={<GuardianRequests />} />
+        <Route path="/wallet/:walletId/add-money" element={<AddMoney />} />
+        <Route path="/wallet/:walletId/send-money" element={<SendMoney />} />
+        <Route path="/approvals" element={<TransactionApprovals />} />
+        <Route path="/wallet/:walletId/transactions" element={<Transactions />} />
+
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
